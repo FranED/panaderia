@@ -1,0 +1,144 @@
+.opciones>button {
+    width: 10vw;
+    border-color: black;
+    box-shadow: 10px 5px 1px rgb(1, 44, 65);
+}
+
+#idModificarUsuario, #idModiStock {
+    margin-bottom: 52.3%;
+}
+
+#idModiEmpresa, #idModiProveedor, #idModiCliente {
+    margin-bottom: 57%;
+}
+
+#opcionesAdministracion {
+    margin-top: 3vh;
+}
+
+.btn {
+    border-color: black;
+}
+
+body {
+    background-image: linear-gradient(to top right, rgb(250, 231, 224), rgb(252, 220, 116), rgb(241, 160, 10));
+}
+
+aside {
+    min-height: 28vh;
+    padding-top: 4vh;
+}
+
+footer {
+    text-align: center;
+    background-color: rgb(252, 105, 52);
+    color: white;
+}
+
+.salidaAdministrar img {
+    width: 5.5vw;
+    height: auto;
+}
+
+.salidaOpciones img {
+    width: 5.7vw;
+    height: auto;
+}
+
+.salidaOpciones figcaption, .salidaAdministrar figcaption {
+    color: white;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.ticket {
+    height: 56.7vh;
+    overflow: scroll;
+}
+
+#resCompra {
+    font-size: 3.5rem;
+    height: 20vh;
+    width: 35vh;
+    color: brown;
+    font-weight: bold;
+}
+
+.total {
+    right: 12vw;
+}
+
+#jenjibre {
+    width: 2vw;
+    height: auto;
+}
+
+.transparente {
+    background-color: transparent;
+    border: 0;
+}
+
+.error {
+    color: rgb(56, 3, 3);
+    background-color: red;
+}
+
+.acierto {
+    background-color: green;
+}
+
+.acierto2 {
+    background-color: white;
+}
+
+.psc2 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    background-image: url(../imagenes/munieco.png);
+    background-position: center;
+    background-color: rgb(245, 220, 174);
+    background-size: 5vw;
+}
+
+#carrusel img {
+    height: 20vh;
+    width: 25vw;
+}
+
+.cierre figcaption {
+    color: black;
+}
+
+#calculadora tr {
+    text-align: center;
+}
+
+#calculadora table {
+    border: 3px solid #000;
+    text-align: center;
+}
+
+#resultado {
+    border: 3px solid blue;
+    padding: 10px;
+}
+
+#calculadora td {
+    width: 55px;
+}
+
+div h2 {
+    color: white;
+}
+
+.transparente2 {
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+}
+
+.salidaListaStock,.salidaListaProveedor,.salidaTodoUsuarios,.salidaListaEmpresa,.salidaListaPedidos,.salidaListaClientes,.salidaListaResumen{
+    min-height: 84vh;
+}

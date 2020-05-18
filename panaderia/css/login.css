@@ -1,0 +1,53 @@
+.jumbotron {
+    text-align: center;
+    background-color: rgb(252, 220, 116);
+    border: none;
+}
+
+#formLogin {
+    border: 5px double black;
+    background-image: linear-gradient(to top right, rgb(241, 160, 10), rgb(252, 220, 116), rgb(241, 160, 10));
+    text-align: center;
+    height: 42.5vh;
+}
+
+#formLogin input {
+    text-align: center;
+}
+
+img {
+    width: 25%;
+    height: auto;
+    text-align: left;
+}
+
+.boton {
+    text-align: right;
+}
+
+.error {
+    color: red;
+    font-size: 1.3rem;
+}
+
+section {
+    height: 47.8vh;
+}
+
+footer {
+    text-align: center;
+    background-color: rgb(241, 160, 10);
+    height: 12.8vh;
+    border-top: 1px solid black;
+}
+
+.login img {
+    border: 5px double black;
+    width: 30vw;
+    height: auto;
+    background-image: linear-gradient(to top right, rgb(250, 234, 181), rgb(252, 220, 116), rgb(241, 160, 10));
+}
+
+body {
+    background-color: rgb(252, 220, 116);
+}
