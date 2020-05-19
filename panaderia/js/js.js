@@ -19,7 +19,6 @@ $(function () {
             nombreUsuario: $('#nombreInicio').val(),
             passUsuario: $('#passInicio').val()
         };
-
         $.post('../funcionalidad/loginUsuario.php', datosLogin, respuestaBackEnd => {
             console.log(respuestaBackEnd)
             // Salida por pantalla de que no hay coincidencia
@@ -44,7 +43,10 @@ $(function () {
             }
         });
     });
-
+    // En caso de fallo en las coincidencias del login. Al pulsar el input del nombre
+    $('#nombreInicio').click(function () {
+        $('.error').hide();
+    });
 
     //|--------------------------------------------------|
     //|              Funciones de inicio                 |

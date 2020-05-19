@@ -5,7 +5,6 @@ session_start();
 $usuario = $_SESSION['usuario'];
 // Y a su código, que me ayudará para hacer la tabla de los pedidos y las ventas
 $codTrabajador = $_SESSION['cod'];
-
 // En el caso de no existir usuario, que valla al loggin
 if (!isset($usuario)) {
     header('location: login.php');
@@ -76,16 +75,17 @@ if (!isset($usuario)) {
                                 </thead>
                                 <!-- Los productos crecerán hacia abajo en el tbody -->
                                 <tbody id="ticket">
-                                
+
                                 </tbody>
                                 <!-- Para mantener el buscador de productos siempre debajo lo pongo en el tfoot -->
                                 <tfoot id="codProTicket">
-                                    
+
                                 </tfoot>
                             </table>
                         </div>
                         <div class="col-sm-1 opciones col-xs-1">
-                            <button type="button" class="btn btn-info p-3 mb-4 rounded" id="opcionesAdministracion">Administrador</button>
+                            <!-- El trabajador al botón de administración no tendrá acceso, por ello el disable=disable -->
+                            <button type="button" class="btn btn-info p-3 mb-4 rounded" disabled="disabled" id="opcionesAdministracion">Administrador</button>
                             <button type="button" class="btn btn-info p-3 mb-4 rounded" id="opcionesDomicilio" data-toggle="modal" data-target="#mdlDomicilio">Domicilio</button>
                             <button type="button" class="btn btn-info p-3 mb-4 rounded" id="opcionesOp">Opciones</button>
                             <button type="button" class="btn btn-info p-3 mb-4 rounded" id="pscb">Visibilidad</button>

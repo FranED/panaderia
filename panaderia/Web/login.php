@@ -1,3 +1,17 @@
+<?php
+// Inicio de la sesión
+session_start();
+// Recupero la sesión asignada en este caso al nombre del usuario
+if (isset($_SESSION['tipo'])) {
+    $tipo = $_SESSION['tipo'];
+    // En el caso de no existir usuario, que valla al loggin
+    if ($tipo == "Jefe") {
+        header('location: index.php');
+    } else if ($tipo == "Trabajador") {
+        header('location: panaderia.php');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

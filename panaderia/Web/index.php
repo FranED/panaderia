@@ -5,7 +5,13 @@ session_start();
 $usuario = $_SESSION['usuario'];
 // Y a su código, que me ayudará para hacer la tabla de los pedidos y las ventas
 $codTrabajador = $_SESSION['cod'];
-
+// Además al trabajador le vamos a poner, que no pueda por la url ir al index de administrador
+$tipo = $_SESSION['tipo'];
+// Si la sesión iniciada es la de un trabajadaor, no puede venir al panel del administrador
+if ($tipo == "Trabajador") {
+    // Se queda en la panaderia
+    header('location: panaderia.php');
+}
 // En el caso de no existir usuario, que valla al loggin
 if (!isset($usuario)) {
     header('location: login.php');
@@ -76,11 +82,11 @@ if (!isset($usuario)) {
                                 </thead>
                                 <!-- Los productos crecerán hacia abajo en el tbody -->
                                 <tbody id="ticket">
-                                
+
                                 </tbody>
                                 <!-- Para mantener el buscador de productos siempre debajo lo pongo en el tfoot -->
                                 <tfoot id="codProTicket">
-                                    
+
                                 </tfoot>
                             </table>
                         </div>

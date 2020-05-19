@@ -20,6 +20,7 @@ if (!empty($_REQUEST['nombreUsuario']) && !empty($_REQUEST['passUsuario'])) {
             // Agrego la sesión al nombre (no al alias) del usuario que entra al sistema
             $_SESSION['usuario'] = $row['Nombre'];
             $_SESSION['cod'] = $row['idTrabajador'];
+            $_SESSION['tipo'] = $row['Tipo'];
         }
         $jsonString = json_encode($json);
         echo $jsonString;
