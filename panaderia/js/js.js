@@ -820,14 +820,15 @@ $(function () {
     //Luego con el THIS le diremos exactamente cual es el botón que se esta clickeando
     //Llamamos a la clase eliminar, puesta en la tabla dinámica
     $(document).on('click', '.eliminarTrabajador', (e) => {
-        //Lógico, preguntar si queremos elimar lo primero al hacer click
-        if (confirm('¿Elimiar Trabajador?')) {
-            //Escalamos por los td, hasta llegar al padre y borrar el tr entero -> botón(hijo) -> contenido -> tr(padre)
-            var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
-            console.log(elementoABorrar)
-            //Conseguimos el código del dato, por ello al tr le pusimos un id en la manera dinámica
-            //Utilizamos el getAttribute para controlarlo de forma dinámica y no el getElementbyId
-            var cod = elementoABorrar.getAttribute('trabajadorId');
+        //Escalamos por los td, hasta llegar al padre y borrar el tr entero -> botón(hijo) -> contenido -> tr(padre)
+        var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
+        //Conseguimos el código del dato, por ello al tr le pusimos un id en la manera dinámica
+        //Utilizamos el getAttribute para controlarlo de forma dinámica y no el getElementbyId
+        var cod = elementoABorrar.getAttribute('trabajadorId');
+        console.log(elementoABorrar)
+        //Lógico, preguntar si queremos elimar lo primero al hacer click llamando al modal de eliminacion
+        $('#modalEliminar').modal('show');
+        $('#siElimina').click(function () {
             console.log(cod)
             $.post('../funcionalidad/borrarTrabajador.php', { cod }, respuestaBackEnd => {
                 console.log(respuestaBackEnd)
@@ -837,7 +838,7 @@ $(function () {
                 //Llamo a la función de la lista de los trabajadores, para que una vez eliminado el tr, la lista siga apareciendo
                 mostrarTrabajadores();
             });
-        };
+        });
     });
 
 
@@ -846,15 +847,16 @@ $(function () {
     //|--------------------------------------------------|
 
     $(document).on('click', '.eliminarProducto', e => {
-        if (confirm("¿Eliminar Producto?")) {
-            var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
-            var cod = elementoABorrar.getAttribute('productoId');
+        var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
+        var cod = elementoABorrar.getAttribute('productoId');
+        $('#modalEliminar').modal('show');
+        $('#siElimina').click(function () {
             $.post('../funcionalidad/borrarProducto.php', { cod }, respuestaBackEnd => {
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 mostrarStock();
             });
-        };
+        });
     });
 
 
@@ -863,15 +865,16 @@ $(function () {
     //|--------------------------------------------------|
 
     $(document).on('click', '.eliminarProveedor', e => {
-        if (confirm('¿Eliminar Proveedor?')) {
-            var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
-            var cod = elementoABorrar.getAttribute('proveedorId');
+        var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
+        var cod = elementoABorrar.getAttribute('proveedorId');
+        $('#modalEliminar').modal('show');
+        $('#siElimina').click(function () {
             $.post('../funcionalidad/borrarProveedor.php', { cod }, respuestaBackEnd => {
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 mostrarProveedores();
             });
-        };
+        });
     });
 
 
@@ -880,30 +883,32 @@ $(function () {
     //|--------------------------------------------------|
 
     $(document).on('click', '.eliminarCliente', e => {
-        if (confirm('¿Eliminar cliente?')) {
-            var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
-            var cod = elementoABorrar.getAttribute('clienteId');
+        var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
+        var cod = elementoABorrar.getAttribute('clienteId');
+        $('#modalEliminar').modal('show');
+        $('#siElimina').click(function () {
             $.post('../funcionalidad/borrarClientes.php', { cod }, respuestaBackEnd => {
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 mostrarClientes();
             });
-        };
+        });
     });
 
     //|--------------------------------------------------|
     //|          Eliminar Empresa Transporte             |
     //|--------------------------------------------------|
     $(document).on('click', '.eliminarEmpresa', e => {
-        if (confirm('¿Eliminar cliente?')) {
-            var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
-            var cod = elementoABorrar.getAttribute('empresaId');
+        var elementoABorrar = $(this)[0].activeElement.parentElement.parentElement;
+        var cod = elementoABorrar.getAttribute('empresaId');
+        $('#modalEliminar').modal('show');
+        $('#siElimina').click(function () {
             $.post('../funcionalidad/borrarEmpresa.php', { cod }, respuestaBackEnd => {
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 mostrarEmpresa();
             });
-        };
+        });
     });
 
 
@@ -1302,9 +1307,10 @@ $(function () {
     //|--------------------------------------------------|
     //Salir al login y cerrar la sesión del usuario
     $('#cerrar').click(function () {
-        if (confirm('¿Salir?')) {
+        $('#modalCierre').modal('show');
+        $('#siCierre').click(function () {
             location.href = "../funcionalidad/salir.php";
-        }
+        });
     });
 
 
@@ -1388,6 +1394,7 @@ $(function () {
         let subir = $(this)[0].parentElement.parentElement;
         let codProducto = subir.getAttribute('idSubPro');
         llamadaProductos(codProducto);
+        $('#codTicketProducto').focus();
     });
 
 
@@ -1402,7 +1409,7 @@ $(function () {
             console.log(compra)
             var plantilla = "";
             compra.forEach(producto => {
-                var cantidad, total, redondeoTotal;
+                var cantidad, total;
                 // Cantidad de productos que se llevan
                 cantidad = parseInt(prompt("¿Cuántos?"));
                 if (cantidad >= 1 && cantidad != NaN) {
@@ -1435,7 +1442,9 @@ $(function () {
                 // Actualización de productos del ticket tras pulsar el botón de venta (hacer el submit)
                 // Al pulsar el botón de venta se mandarán los valores
                 $('#formTicket').submit(function (e) {
-                    if (confirm('¿Confirmar Venta?')) {
+                    e.preventDefault();
+                    $('#modalVenta').modal('show');
+                    $('#siVende').click(function () {
                         e.preventDefault();
                         var datosVenta = {
                             codProducto,
@@ -1452,8 +1461,9 @@ $(function () {
                             $('#ticket').empty();
                             sumarProductos();
                         });
-                    }
+                    });
                 });
+
             });
             // Limpiar el input de entrada tras cada producto añadido a la lista
             $('#codTicketProducto').val('');

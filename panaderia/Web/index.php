@@ -272,7 +272,7 @@ if (!isset($usuario)) {
                     <!-- Imagen que lanza el modal reparto-->
                     <div class="p-2">
                         <figure>
-                            <img src="../Imagenes/reparto.png" alt="iMreparto" id="transporte" data-toggle="modal" data-target="#formTransporte">
+                            <img src="../imagenes/reparto.png" alt="iMreparto" id="transporte" data-toggle="modal" data-target="#formTransporte">
                             <figcaption>Empresa Transporte</figcaption>
                         </figure>
                     </div>
@@ -771,7 +771,7 @@ if (!isset($usuario)) {
                     </div>
                     <div class="p-2">
                         <figure>
-                            <img src="../Imagenes/resumen.png" alt="resumen" data-toggle="modal" data-target="#formCerrar">
+                            <img src="../imagenes/resumen.png" alt="resumen" data-toggle="modal" data-target="#formCerrar">
                             <figcaption>Acabar turno</figcaption>
                         </figure>
                     </div>
@@ -787,13 +787,13 @@ if (!isset($usuario)) {
                                     <div class="d-flex flex-row d-flex justify-content-around d-flex align-items-center">
                                         <div class="p-2">
                                             <figure>
-                                                <img src="../Imagenes/lista.png" alt="resumen" id="resumen" data-dismiss="modal">
+                                                <img src="../imagenes/lista.png" alt="resumen" id="resumen" data-dismiss="modal">
                                                 <figcaption>Resumen del día</figcaption>
                                             </figure>
                                         </div>
                                         <div class="p-2">
                                             <figure>
-                                                <img src="../Imagenes/cerrar.png" alt="Cerrar" id="cerrar">
+                                                <img src="../imagenes/cerrar.png" alt="Cerrar" id="cerrar">
                                                 <figcaption>Cierre</figcaption>
                                             </figure>
                                         </div>
@@ -820,6 +820,54 @@ if (!isset($usuario)) {
                         </div>
                         <div class="modal-body">
                             <h5 class="text-center"><input type="text" id="infoModal" class="text-center transparente"></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal de Cierre del programa-->
+            <div id="modalCierre" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title">
+                                <h3 class="text-center">Finalizar Turno</h3>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-success btn-block" id="siCierre" data-dismiss="modal">Sí</button>
+                            <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal de confirmación de venta -->
+            <div id="modalVenta" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title">
+                                <h3 class="text-center">Finalizar Venta</h3>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-success btn-block" id="siVende" data-dismiss="modal">Sí</button>
+                            <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal de eliminar -->
+            <div id="modalEliminar" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title">
+                                <h3 class="text-center">ELiminar</h3>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-success btn-block" id="siElimina" data-dismiss="modal">Sí</button>
+                            <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">No</button>
                         </div>
                     </div>
                 </div>
