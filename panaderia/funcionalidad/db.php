@@ -1,9 +1,9 @@
 <?php
 //Conectar con la base de datos. Defino los parámetros para el mysqli_connect
-$usuario = 'root';
-$contrasena = '';
+$usuario = 'sandbox';
+$contrasena = 'pp58bM0o0VopH0KU';
 $servidor = 'localhost';
-$basededatos = 'panaderia';
+$basededatos = 'sandbox3';
 //Conectarse a la base de datos
 $conexion = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
 if ($conexion) { //Si existe la conexión los valores me los devolverá en la codificacion utf8

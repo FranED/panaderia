@@ -14,7 +14,7 @@ if (!empty($_REQUEST['cBarras']) && isset($_REQUEST['nomProducto']) && isset($_R
         $consulta = "INSERT INTO productos (idProducto,idProveedor, Nombre, Cantidad, Precio, Precio_Venta, Visible) VALUES ('$cod','$codP', '$nombre','$numero','$precio','$precioV','$tipoProducto')";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado) {
-            die('Error tabla Producto ' . mysqli_error($conexion));
+            die('El código ya existe');
         } else {
             echo 'Producto agregado';
         }

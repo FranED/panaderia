@@ -45,7 +45,7 @@ $(function () {
     });
     // En caso de fallo en las coincidencias del login. Al pulsar el input del nombre
     $('#nombreInicio').click(function () {
-        $('.error').hide();
+        $('.error').html('');
     });
 
     //|--------------------------------------------------|
@@ -57,6 +57,9 @@ $(function () {
     lineaNueva();
     //Contador de los productos del ticket: que se vea el cero 
     sumarProductos();
+    // Mantener siempre visible el resumen de ventas con la finalidad de evitar duplicados en el envío de información
+    // La pega que tiene, es que hay que actualizar la página cada vez que se quiera consultar el resumen diario
+    mostrarResumenDiario();
 
     //|--------------------------------------------------|
     //|            Visibilidad de secciones              |
@@ -175,8 +178,6 @@ $(function () {
     });
     // Mostrar el listado del resumen diario
     $('#resumen').click(function () {
-        mostrarResumenDiario();
-        mostrarTotal();
         $('.salidaListaResumen').show();
         $('.salidaOpciones').hide();
         $('section').hide();
@@ -416,8 +417,8 @@ $(function () {
         $('#telBusCliente').val("");
         $('#crearPedido').hide();
         $('#crearCliente').hide();
-        $('footer').hide();
-        $('#carrusel').hide();
+        $('footer').show();
+        $('#carrusel').show();
     });
     //Mostrar/Ocultar los artículos sin código
     $('#pscb').click(function () {
@@ -962,6 +963,7 @@ $(function () {
             // Tercero, los envío para ser actualizados
             $.post('../funcionalidad/actualizarTrabajador.php', datosNuevos, respuestaBackEnd => {
                 console.log(respuestaBackEnd)
+                $('#passUsuarioM').addClass("acierto2");
                 // Que salga por pantalla que se ha actualizado
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
@@ -1068,6 +1070,7 @@ $(function () {
             };
             $.post('../funcionalidad/actualizarProveedor.php', datosNuevos, respuestaBackEnd => {
                 mostrarProveedores();
+                $('#telProveedorM').addClass("acierto2");
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 // Actualizar los Proveedores, ocultar una vez acabado 
@@ -1116,6 +1119,7 @@ $(function () {
                 comision: $('#comisionEmpM').val()
             };
             $.post('../funcionalidad/actualizarEmpresa.php', datosNuevos, respuestaBackEnd => {
+                $('#telEmpresaM').addClass("acierto2");
                 mostrarEmpresa();
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
@@ -1166,6 +1170,7 @@ $(function () {
             };
             $.post('../funcionalidad/actualizarCliente.php', datosNuevos, respuestaBackEnd => {
                 mostrarClientes();
+                $('#telClienteM').addClass("acierto2");
                 $('#modalInfo').modal('show');
                 $('#infoModal').val(respuestaBackEnd);
                 //Contraer el formulario del cliente
@@ -1290,15 +1295,14 @@ $(function () {
             const direccion = JSON.parse(respuestaBackEnd);
             $('#direccionPedido').val(direccion[0]['direccion']);
             $('#infoModal').val("Existe el cliente");
-            $('#modalInfo').modal('hide');
         });
+        $('footer').show();
         $('#btnTelClientes').trigger("reset");
         // Se desplegará la opcion de pedidos tras pulsar el boton busqueda por telefono
         $('#crearPedido').show();
         $('#empTransPedido').empty();
         //Desplegar las empresas que hay en el select de transporte
         mostrarEmpresa2();
-        $('footer').hide();
     });
 
 
@@ -1421,7 +1425,7 @@ $(function () {
                 plantilla +=
                     `
                     <tr style="text-align: center">
-                    <td><input type="number" class="cantidad" value="${codProducto}" style="background-color:transparent;border: 0; text-align:center;" disabled></td>
+                    <td><input type="number" value="${codProducto}" style="background-color:transparent;border: 0; text-align:center;" disabled></td>
                     <td>${producto.nombre}</td>
                     <td>${cantidad}</td>
                     <td>${producto.pventa}</td>
@@ -1445,25 +1449,22 @@ $(function () {
                     e.preventDefault();
                     $('#modalVenta').modal('show');
                     $('#siVende').click(function () {
-                        e.preventDefault();
                         var datosVenta = {
                             codProducto,
                             cantidad,
                             codTrabajador: $('#codSesionUsu').val(),
                             totVenta: $('#resCompra').val()
                         };
-                        console.log(datosVenta)
-                        // Aprovecho para rellenar tabla de unión entre trabajador y productos en la actualización
-                        $.post('../funcionalidad/actualizarProductosTrasVenta.php', datosVenta, respuestaBackEnd => {
+                        // Aprovecho para rellenar tabla productos en la actualización y asignarle el trabajador
+                        $.get('../funcionalidad/actualizarProductosTrasVenta.php', datosVenta, respuestaBackEnd => {
                             console.log(respuestaBackEnd)
                             $('#formTicket').trigger('reset');
-                            // Borro el contenido del tbody
-                            $('#ticket').empty();
                             sumarProductos();
                         });
+                        // Borro el contenido del tbody
+                        $('#ticket').empty();
                     });
                 });
-
             });
             // Limpiar el input de entrada tras cada producto añadido a la lista
             $('#codTicketProducto').val('');
@@ -1504,8 +1505,8 @@ $(function () {
                   <td>${listado.precio}</td>
                   <td>${listado.cantidad}</td>
                   <td class="sumaTotal">${listado.precio * listado.cantidad}</td>
-                  </tr>`
-
+                  </tr>
+                  `
             });
             $('#salidaResumen').html(plantilla);
             mostrarTotal();
