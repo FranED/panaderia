@@ -471,7 +471,7 @@ $(function () {
         // Y la paso por match, para comprobar si cumple el patrón
         if (contrasena.match(patron)) {
             // Limpio la clase que pueda traer (por si a fallao en el primer intento)
-            $('#passUsuario').addClass("");
+            $('#passUsuario').addClass("acierto2");
             //Preparamos y enviamos los datos que recojo del html al back-end si el patrón es válido
             var datosUsuario = {
                 //variable que va al back end ':' valor que cojo de su formulario por las id's
@@ -1534,6 +1534,7 @@ $(function () {
     $("#ticket").on("click", ".eliminarProductoTicket", function () {
         $(this).closest("tr").remove();
         sumarProductos();
+        mostrarResumenDiario();
     });
 
 

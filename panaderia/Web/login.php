@@ -43,7 +43,7 @@ if (isset($_SESSION['tipo'])) {
                     <form id="formLogin">
                         <h5>Acceso al sistema</h5>
                         <div class="form-group">
-                            <input type="text" id="nombreInicio" class="form-control" placeholder="Nombre *" required>
+                            <input type="text" id="nombreInicio" class="form-control" placeholder="Alias *" required>
                         </div>
                         <div class="form-group">
                             <input type="password" id="passInicio" class="form-control" placeholder="Contraseña *" required>
